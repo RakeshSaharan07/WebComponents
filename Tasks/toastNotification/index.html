@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>toast Notification</title>
+  </head>
+  <body>
+    <div id="toasts"></div>
+
+    <button class="btn" id="button">Show Notification</button>
+
+    <script>
+      const button = document.getElementById("button");
+      const toasts = document.getElementById("toasts");
+
+      const messages = [
+        "Message One",
+        "message two",
+        "message three",
+        "message four",
+      ];
+
+      const types = ["success", "error", "info"];
+      button.addEventListener("click", () => createNotification());
+
+      function createNotification(msg = null, type = null) {
+        const notif = document.createElement("div");
+        notif.classList.add("toast");
+
+        notif.classList.add(type ? type : getRandomTypes());
+
+        notif.innerText = msg ? msg : getRandomMessage();
+
+        toasts.appendChild(notif);
+
+        setTimeout(() => {
+          notif.remove();
+        }, 3000);
+      }
+
+      function getRandomTypes() {
+        return types[Math.floor(Math.random() * types.length)];
+      }
+      function getRandomMessage() {
+        return messages[Math.floor(Math.random() * messages.length)];
+      }
+    </script>
+  </body>
+</html>

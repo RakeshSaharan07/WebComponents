@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
+      integrity="sha512-BnbUDfEUfV0Slx6TunuB042k9tuKe3xrD6q4mg5Ed72LTgzDIcLPxg6yI2gcMFRyomt+yJJxE+zJwNmxki6/RA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Incrementing Counter</title>
+  </head>
+  <body>
+    <div class="counter-container">
+      <i class="fab fa-twitter fa-3x"></i>
+      <div class="counter" data-target="12000"></div>
+      <span>Twitter Followers😎</span>
+    </div>
+  <body>
+    <div class="counter-container">
+      <i class="fab fa-youtube fa-3x"></i>
+      <div class="counter" data-target="5000"></div>
+      <span>YouTube Subscribers🥰</span>
+    </div>
+  <body>
+    <div class="counter-container">
+      <i class="fab fa-facebook fa-3x"></i>
+      <div class="counter" data-target="7500"></div>
+      <span>Facebook Fans🤩</span>
+    </div>
+    <script>
+
+        const counters = document.querySelectorAll('.counter')
+
+
+        counters.forEach(counter => {
+            counter.innerText = '0'
+
+            const updateCounter = () =>{
+                const target = +counter.getAttribute('data-target');
+                const c = +counter.innerText
+
+                const increment = target/ 200
+                if(c < target){
+                    counter.innerText = `${Math.ceil(c + increment)}`
+                    setTimeout(updateCounter, 1)
+                }else{
+                    counter.innerText = target;
+                }
+
+            }
+
+            updateCounter()
+        })
+    </script>
+  </body>
+</html>
