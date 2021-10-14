@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
+      integrity="sha512-BnbUDfEUfV0Slx6TunuB042k9tuKe3xrD6q4mg5Ed72LTgzDIcLPxg6yI2gcMFRyomt+yJJxE+zJwNmxki6/RA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Background Slider</title>
+  </head>
+  <body>
+    <div class="slider-container">
+      <div
+        class="slide active"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1587502536575-6dfba0a6e017?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80');
+        "
+      ></div>
+      <div
+        class="slide"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1470770903676-69b98201ea1c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80');
+        "
+      ></div>
+      <div
+        class="slide"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1492496913980-501348b61469?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1534&q=80');
+        "
+      ></div>
+      <div
+        class="slide"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1422564030440-1ecae6e21f67?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1401&q=80');
+        "
+      ></div>
+      <div
+        class="slide"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1487622750296-6360190669a1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80');
+        "
+      ></div>
+
+      <button class="arrow left-arrow" id="left">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+
+      <button class="arrow right-arrow" id="right">
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <script>
+      const body = document.body;
+      const slides = document.querySelectorAll(".slide");
+      const leftBtn = document.getElementById("left");
+      const rightBtn = document.getElementById("right");
+
+      let activeSlide = 0;
+
+      leftBtn.addEventListener("click", () => {
+        activeSlide--;
+
+        if (activeSlide < 0) {
+          activeSlide = slides.length - 1;
+        }
+
+        setBgtoBody();
+        setActiveSlide();
+      });
+      rightBtn.addEventListener("click", () => {
+        activeSlide++;
+
+        if (activeSlide > slides.length - 1) {
+          activeSlide = 0;
+        }
+
+        setBgtoBody();
+        setActiveSlide();
+      });
+
+      setBgtoBody();
+
+      function setBgtoBody() {
+        body.style.backgroundImage = slides[activeSlide].style.backgroundImage;
+      }
+
+      function setActiveSlide() {
+        slides.forEach((slide) => slide.classList.remove("active"));
+
+        slides[activeSlide].classList.add("active");
+      }
+    </script>
+  </body>
+</html>
